@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>keycloak-graalvm-js-scripting-provider</artifactId>
+        <groupId>com.github.thomasdarimont.keycloak.scripting</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>graalvm-js-scripting-provider-bundle</artifactId>
+    <packaging>ear</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>graalvm-js-scripting-provider</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <version>${maven-ear-plugin.version}</version>
+                <configuration>
+                    <filtering>true</filtering>
+                    <includeLibInApplicationXml>false</includeLibInApplicationXml>
+                    <defaultLibBundleDir>APP-INF/lib</defaultLibBundleDir>
+                    <modules>
+                        <jarModule>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>graalvm-js-scripting-provider</artifactId>
+                            <includeInApplicationXml>true</includeInApplicationXml>
+                            <bundleDir>/</bundleDir>
+                        </jarModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
